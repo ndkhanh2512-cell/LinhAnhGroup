@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Màn hình phòng CEO</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#e3c27a}a:hover{color:#f3d88c}
+</style>
+<style>body{margin:0;background:#120524;overflow:hidden}#app{width:1920px;height:1080px;transform-origin:0 0}</style>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="width: 1920px; height: 1080px; box-sizing: border-box; background: #1a0833; color: #f3ecfa; font-family: 'Be Vietnam Pro', system-ui, sans-serif; padding: 32px 40px; display: flex; flex-direction: column; gap: 22px">
+  <div style="display: flex; justify-content: space-between; align-items: center">
+    <div style="display: flex; align-items: baseline; gap: 20px">
+      <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 36px; font-weight: 700; color: #e3c27a">Linh Anh</span>
+      <span style="font-size: 22px; color: #cdb9e6">Toàn cảnh hằng ngày</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 20px">
+      <span style="font-size: 16px; font-weight: 600; color: #1a0833; background: #e3c27a; padding: 5px 12px; border-radius: 999px">Số liệu minh họa</span>
+      <span style="font-size: 20px; color: #cdb9e6">Thứ Hai, 15/03/2027 · cập nhật lúc 08:00</span>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1.15fr 1.15fr 1.7fr 1.3fr; gap: 18px">
+    <div style="background: #2a1150; border-radius: 22px; padding: 22px 26px; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 19px; color: #cdb9e6">Hôm qua cả chuỗi thu</span>
+      <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 64px; font-weight: 700; color: #e3c27a; line-height: 1.05">2,31 tỷ</span>
+      <span style="font-size: 18px; font-weight: 600; color: #6fe0a6">Đạt 98% mục tiêu ngày</span>
+    </div>
+    <div style="background: #2a1150; border-radius: 22px; padding: 22px 26px; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 19px; color: #cdb9e6">Lãi từ đầu tháng</span>
+      <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 64px; font-weight: 700; color: #e3c27a; line-height: 1.05">8,1 tỷ</span>
+      <span style="font-size: 18px; font-weight: 600; color: #6fe0a6">Đúng kế hoạch</span>
+    </div>
+    <div style="background: #2a1150; border-radius: 22px; padding: 22px 26px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 19px; color: #cdb9e6">Doanh thu tháng 3 so với mục tiêu</span><span style="font-size: 18px; font-weight: 600; color: #6fe0a6">Đi trước 2 ngày</span></div>
+      <div style="display: flex; align-items: baseline; gap: 14px"><span style="font-family: 'Playfair Display', Georgia, serif; font-size: 48px; font-weight: 700; color: #ffffff">34,6 tỷ</span><span style="font-size: 20px; color: #cdb9e6">trên 67 tỷ</span></div>
+      <div style="position: relative; height: 22px; background: #3b1c68; border-radius: 11px; overflow: hidden"><div style="width: 52%; height: 22px; background: #e3c27a; border-radius: 11px"></div></div>
+      <div style="display: flex; justify-content: space-between; font-size: 16px; color: #cdb9e6"><span>Đã đạt 52%</span><span>Đã qua 48% số ngày trong tháng</span></div>
+    </div>
+    <div style="background: #4a1488; border-radius: 22px; padding: 22px 26px; display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 19px; font-weight: 700; color: #e3c27a">Cần quyết hôm nay</span>
+      <sc-for list="{{ decisions }}" as="d" hint-placeholder-count="3">
+        <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 17px; line-height: 1.35"><span style="flex: none; width: 26px; height: 26px; border-radius: 50%; background: #e3c27a; color: #1a0833; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700">{{ d.n }}</span><span>{{ d.t }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; flex: 1">
+    <sc-for list="{{ depts }}" as="p" hint-placeholder-count="8">
+      <div style="background: #24103f; border: 2px solid {{ p.border }}; border-radius: 22px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+          <span style="font-size: 21px; font-weight: 700; color: #ffffff">{{ p.name }}</span>
+          <span style="font-size: 15px; font-weight: 700; color: {{ p.badgeFg }}; background: {{ p.badgeBg }}; padding: 4px 12px; border-radius: 999px">{{ p.status }}</span>
+        </div>
+        <sc-for list="{{ p.kpis }}" as="k" hint-placeholder-count="3">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-top: 1px solid #3a1d63; padding-top: 10px">
+            <span style="font-size: 17px; color: #cdb9e6; line-height: 1.3">{{ k.l }}</span>
+            <span style="flex: none; display: flex; flex-direction: column; align-items: flex-end">
+              <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 30px; font-weight: 700; color: {{ k.c }}; line-height: 1.1">{{ k.v }}</span>
+              <span style="font-size: 14px; color: #a993c7">{{ k.goal }}</span>
+            </span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 24px; background: #24103f; border-radius: 18px; padding: 14px 24px">
+    <span style="font-size: 18px; font-weight: 700; color: #e3c27a; flex: none">13 cơ sở</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px 18px; flex: 1">
+      <sc-for list="{{ branches }}" as="b" hint-placeholder-count="13">
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 16px; color: #e8dcf6"><span style="width: 14px; height: 14px; border-radius: {{ b.rad }}; background: {{ b.c }}"></span>{{ b.n }}</span>
+      </sc-for>
+    </div>
+    <span style="font-size: 15px; color: #a993c7; flex: none">Tròn: ổn · vuông bo: theo dõi · vuông: cần xử lý</span>
+  </div>
+</div>
+</template>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:9;font:600 14px 'Be Vietnam Pro',system-ui,sans-serif;background:#2e0b57;color:#e3c27a;text-decoration:none;padding:10px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)">Về trang chính</a>
+<script>
+class Component extends DCLogic {
+  renderVals() {
+    const OK = '#6fe0a6', WARN = '#f0c060', BAD = '#ff7eb6', W = '#ffffff';
+    const st = {
+      ok: { status: 'Đạt', badgeBg: '#1d4d36', badgeFg: '#9af0c4', border: '#3fbf7f' },
+      warn: { status: 'Theo dõi', badgeBg: '#5a4313', badgeFg: '#ffd98a', border: '#7a5a12' },
+      bad: { status: 'Cần xử lý', badgeBg: '#5c1638', badgeFg: '#ffc2de', border: '#b5176f' }
+    };
+    const d = (name, s, kpis) => Object.assign({ name, kpis: kpis.map(([l, v, goal, c]) => ({ l, v, goal, c: c || W })) }, st[s]);
+    return {
+      decisions: [
+        { n: '1', t: 'Duyệt giá giảm 20% phun môi tháng 11' },
+        { n: '2', t: 'Chuyển 15% ngân sách TikTok sang Meta' },
+        { n: '3', t: 'Bình Dương 2: giảm quảng cáo, chuyển lịch' }
+      ],
+      depts: [
+        d('Kinh doanh, cơ sở', 'ok', [['Khách được phục vụ hôm qua', '412', 'Mục tiêu 400'], ['Mỗi khách trả trung bình', '5,6 tr', 'Tăng 3% so tháng 2'], ['Cơ sở đạt mục tiêu ngày', '10/13', 'Mục tiêu 11/13', WARN]]),
+        d('Marketing', 'ok', [['1 đồng quảng cáo thu về', '5,3 đ', 'Mục tiêu 5 đ'], ['Tốn để có 1 khách trả tiền', '1,04 tr', 'Mục tiêu dưới 1,1 tr'], ['Khách để lại số hôm qua', '612', 'Trung bình 600']]),
+        d('Chăm sóc khách hàng', 'bad', [['Gọi lại trong 5 phút', '78%', 'Mục tiêu 90%', BAD], ['Khách đã hẹn có đến', '46%', 'Mục tiêu 55%', BAD], ['Khách hài lòng', '4,7/5', 'Mục tiêu 4,6']]),
+        d('Chuyên môn, bác sĩ', 'ok', [['Ca dịch vụ hôm qua', '418', 'Công suất 82%'], ['Khiếu nại đang mở', '3', 'Xử lý trong 48 giờ'], ['Sự cố y khoa', '0', 'Mục tiêu 0', OK]]),
+        d('Tài chính', 'ok', [['Tiền thu vào hôm qua', '2,52 tỷ', 'Có 0,21 tỷ bán gói mới'], ['Tiền khách trả trước', '42,6 tỷ', '18.300 buổi phải phục vụ'], ['Trả nhà cung cấp tuần này', '1,8 tỷ', 'Đủ tiền chi trả']]),
+        d('Nhân sự', 'warn', [['Nghỉ hôm nay', '18', '3% trên 600 người'], ['Vị trí đang tuyển', '12', '6 bác sĩ cần gấp', WARN], ['Nghỉ việc tháng này', '1,2%', 'Mục tiêu dưới 2%']]),
+        d('Pháp chế, tuân thủ', 'warn', [['Chứng chỉ sắp hết hạn', '1', 'Còn 14 ngày', WARN], ['Vi phạm giấy phép', '0', 'Mục tiêu 0', OK], ['Quảng cáo chờ duyệt nội dung', '4', 'Duyệt trong 24 giờ']]),
+        d('Công nghệ', 'ok', [['Hệ thống hoạt động', '99,9%', 'Mục tiêu 99,5%'], ['Yêu cầu hỗ trợ còn tồn', '5', 'Đều trong hạn xử lý'], ['Sự cố bảo mật', '0', 'Mục tiêu 0', OK]])
+      ],
+      branches: [['Quận 10', 'g'], ['Phú Nhuận', 'g'], ['Gò Vấp', 'g'], ['Thủ Đức', 'g'], ['Quận 7', 'g'], ['Quận 6', 'g'], ['Biên Hòa 1', 'g'], ['Biên Hòa 2', 'y'], ['Long Thành', 'y'], ['Bình Dương 1', 'g'], ['Bình Dương 2', 'r'], ['Đà Nẵng', 'g'], ['Đà Lạt', 'g']]
+        .map(([n, s]) => ({ n, c: s === 'g' ? OK : (s === 'y' ? WARN : BAD), rad: s === 'g' ? '50%' : (s === 'y' ? '4px' : '0px') }))
+    };
+  }
+}
+dcMount(Component);
+</script>
+<script>(function(){function fit(){var s=Math.min(innerWidth/1920,innerHeight/1080);var a=document.getElementById("app");a.style.transform="scale("+s+")";a.style.marginLeft=Math.max(0,(innerWidth-1920*s)/2)+"px";}addEventListener("resize",fit);fit();})();</script>
+</body>
+</html>

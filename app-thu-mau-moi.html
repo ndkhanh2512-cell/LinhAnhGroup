@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thử màu môi Linh Anh</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4a1488}a:hover{color:#2e0b57}
+</style>
+<style>body{margin:0;background:#e6dcef;display:flex;justify-content:center;padding:32px 16px 80px;min-height:100vh;box-sizing:border-box}</style>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #f5eefa; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #2a1740; padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 14px">
+  <div style="display: flex; align-items: center; gap: 10px">
+    <a href="app-trang-chu.html" aria-label="Quay lại trang chủ" style="width: 44px; height: 44px; border-radius: 14px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
+    <div>
+      <div style="font-size: 18px; font-weight: 700">Thử màu môi trước khi phun</div>
+      <div style="font-size: 13px; color: #5d4c73">Personal 4K Color</div>
+    </div>
+  </div>
+
+  <div style="height: 270px; border-radius: 22px; background: #eadff3; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; padding-bottom: 8px; overflow: hidden">
+    <svg role="img" aria-label="Mô phỏng màu môi {{ name }} trên khuôn mặt minh họa" width="300" height="236" viewBox="0 0 300 236">
+      <path d="M22 0 H278 V96 Q276 170 214 212 Q182 232 150 232 Q118 232 86 212 Q24 170 22 96 Z" fill="#f2cdb5"/>
+      <path d="M22 0 H62 V100 Q64 160 100 200 Q60 178 34 136 Q22 112 22 96 Z" fill="#e7b99d" fill-opacity="0.55"/>
+      <path d="M278 0 H238 V100 Q236 160 200 200 Q240 178 266 136 Q278 112 278 96 Z" fill="#e7b99d" fill-opacity="0.55"/>
+      <path d="M150 0 Q156 34 166 54 Q178 62 174 72 Q166 80 156 76 Q150 82 144 76 Q134 80 126 72 Q122 62 134 54 Q144 34 150 0" fill="#ecc0a5"/>
+      <path d="M134 72 Q140 77 146 74 M154 74 Q160 77 166 72" fill="none" stroke="#b9826a" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M150 84 V100" stroke="#e2b096" stroke-width="5" stroke-linecap="round" stroke-opacity="0.6"/>
+      <g transform="translate(80,104)">
+        <path d="M8 40 Q38 8 70 28 Q102 8 132 40 Q104 78 70 76 Q36 78 8 40 Z" fill="{{ color }}"/>
+        <path d="M14 41 Q42 33 70 39 Q98 33 126 41" fill="none" stroke="#5a2234" stroke-opacity="0.45" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M48 24 Q58 20 66 26" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round"/>
+        <path d="M60 58 Q70 62 80 58" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <path d="M128 206 Q150 214 172 206" fill="none" stroke="#d9a284" stroke-width="2" stroke-linecap="round" stroke-opacity="0.7"/>
+    </svg>
+    <span style="font-size: 12px; color: #5d4c73">Khuôn mặt minh họa · ảnh thật của khách thay vào khi dùng</span>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline">
+    <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; color: #2e0b57">{{ name }}</span>
+    <span style="font-size: 13px; color: #5d4c73">Chạm để đổi màu</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+    <sc-for list="{{ swatches }}" as="s" hint-placeholder-count="6">
+      <button aria-label="{{ s.name }}" onClick="{{ s.pick }}" style="height: 48px; border-radius: 50%; border: {{ s.ring }}; background: {{ s.hex }}; cursor: pointer; padding: 0"></button>
+    </sc-for>
+  </div>
+  <p style="margin: 0; font-size: 13px; line-height: 1.45; color: #5d4c73">Đây là kết quả mô phỏng. Màu môi ổn định và lên rõ sau khoảng 4 đến 6 tuần.</p>
+
+  <div style="background: #ffffff; border-radius: 18px; padding: 14px 16px; display: flex; gap: 12px; align-items: center">
+    <span style="flex: none; width: 46px; height: 46px; border-radius: 50%; background: #2e0b57; color: #e3c27a; display: inline-flex; align-items: center; justify-content: center; font-weight: 700">BS</span>
+    <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+      <span style="font-size: 15px; font-weight: 700">[Tên bác sĩ phụ trách]</span>
+      <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #1f6b42; font-weight: 600"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f6b42" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Chứng chỉ hành nghề đã xác thực</span>
+      <span style="font-size: 13px; color: #5d4c73">[Số] đánh giá từ khách đã điều trị thật</span>
+    </div>
+  </div>
+
+  <button style="margin-top: auto; height: 54px; font: inherit; font-size: 16px; font-weight: 700; border: 0; border-radius: 16px; background: #4a1488; color: #ffffff; cursor: pointer">Đặt lịch tư vấn với màu {{ name }}</button>
+</div>
+</template>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:9;font:600 14px 'Be Vietnam Pro',system-ui,sans-serif;background:#2e0b57;color:#e3c27a;text-decoration:none;padding:10px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)">Về trang chính</a>
+<script>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { picked: 0 }; }
+  renderVals() {
+    const list = [
+      ['Hồng đào', '#e48a8a'], ['Đỏ cam', '#d9583b'], ['Hồng baby', '#f2a0b5'],
+      ['Đỏ rượu', '#8e1f3a'], ['Cam san hô', '#ee7f5f'], ['Hồng đất', '#b9675f']
+    ];
+    const p = this.state.picked ?? 0;
+    const swatches = list.map(([name, hex], i) => ({
+      name, hex,
+      ring: i === p ? '3px solid #2e0b57' : '3px solid #ffffff',
+      pick: () => this.setState({ picked: i })
+    }));
+    return { swatches, name: list[p][0], color: list[p][1] };
+  }
+}
+dcMount(Component);
+</script>
+
+</body>
+</html>

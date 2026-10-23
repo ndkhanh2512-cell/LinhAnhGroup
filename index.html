@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cổng ứng dụng Linh Anh</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4a1488}a:hover{color:#2e0b57}
+</style>
+<style>body{margin:0}</style>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="min-height: 1600px; background: #f5eefa; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #2a1740">
+  <div style="background: #2e0b57; color: #f7f0fd">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 16px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: baseline; gap: 16px">
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #e3c27a; letter-spacing: 1px">Linh Anh</span>
+        <span style="font-size: 15px; color: #d6c4ea">Cổng ứng dụng nội bộ</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <span style="font-size: 13px; font-weight: 600; color: #2e0b57; background: #e3c27a; padding: 4px 10px; border-radius: 999px">Số liệu minh họa</span>
+        <div style="display: flex; align-items: center; gap: 10px; background: #3d1470; border-radius: 999px; padding: 5px 14px 5px 5px">
+          <span style="width: 34px; height: 34px; border-radius: 50%; background: #e3c27a; color: #2e0b57; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">IT</span>
+          <span style="display: flex; flex-direction: column; line-height: 1.2"><span style="font-size: 14px; font-weight: 600">IT@lagroup.vn</span><span style="font-size: 12px; color: #d6c4ea">Quản trị hệ thống</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width: 1360px; margin: 0 auto; padding: 36px 40px 56px; display: flex; flex-direction: column; gap: 32px">
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between">
+      <div style="max-width: 680px">
+        <h1 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 40px; font-weight: 700; color: #2e0b57; line-height: 1.15">Mọi công cụ của Linh Anh ở một chỗ</h1>
+        <p style="margin: 10px 0 0; font-size: 16px; line-height: 1.55; color: #5d4c73">Một tài khoản, một lần đăng nhập. Mỗi người chỉ thấy chức năng và số liệu đúng với vai trò của mình.</p>
+      </div>
+      <div style="flex: 0 1 460px; display: flex; flex-direction: column; gap: 6px">
+        <label for="find" style="display: flex; align-items: center; gap: 10px; background: #ffffff; border: 2px solid #b5176f; border-radius: 14px; padding: 6px 16px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b5176f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="find" value="{{ q }}" onChange="{{ onSearch }}" placeholder="Tìm báo cáo hoặc chức năng, ví dụ: lãi lỗ" style="border: 0; outline: none; flex: 1; font: inherit; font-size: 16px; padding: 8px 0; color: #2a1740; background: transparent; min-width: 0"></label>
+        <span style="font-size: 13px; color: #5d4c73">{{ countText }}</span>
+      </div>
+    </div>
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+      <section style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap"><h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #2e0b57">{{ g.name }}</h2><span style="font-size: 14px; color: #5d4c73">{{ g.sub }}</span></div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px">
+          <sc-for list="{{ g.items }}" as="c" hint-placeholder-count="3">
+            <a href="{{ c.href }}" style="text-decoration: none; color: #2a1740; background: #ffffff; border: 1px solid #e6d9f2; border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; min-height: 150px; box-sizing: border-box">
+              <span style="display: flex; justify-content: space-between; align-items: center"><span style="width: 44px; height: 44px; border-radius: 12px; background: #efe5f8; display: inline-flex; align-items: center; justify-content: center"><sc-if value="{{ c.ic_cash }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><circle cx="12" cy="12.5" r="3"/></svg></sc-if><sc-if value="{{ c.ic_chart }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></sc-if><sc-if value="{{ c.ic_doc }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></sc-if><sc-if value="{{ c.ic_home }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg></sc-if><sc-if value="{{ c.ic_lips }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12q4.5-5 9-2 4.5-3 9 2-4.5 6-9 6t-9-6z"/></svg></sc-if><sc-if value="{{ c.ic_pulse }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></sc-if><sc-if value="{{ c.ic_receipt }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></sc-if><sc-if value="{{ c.ic_spark }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9.4l-4.2 1.8L12 16l-1.8-4.8L6 9.4l4.2-1.8z"/></svg></sc-if><sc-if value="{{ c.ic_ticket }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a2 2 0 002-2V5h14v2a2 2 0 000 4v2a2 2 0 000 4v2H5v-2a2 2 0 00-2-2z"/><path d="M10 9v6"/></svg></sc-if><sc-if value="{{ c.ic_tv }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></sc-if><sc-if value="{{ c.ic_user }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></sc-if></span><span style="font-size: 12px; font-weight: 600; color: #5d4c73">{{ c.dev }}</span></span>
+              <span style="font-size: 16px; font-weight: 700; color: #2e0b57">{{ c.t }}</span>
+              <span style="font-size: 14px; line-height: 1.45; color: #5d4c73">{{ c.d }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <div style="background: #ffffff; border-radius: 18px; padding: 24px; font-size: 15px; line-height: 1.55">Không tìm thấy báo cáo hay chức năng nào khớp. Thử từ khác như “doanh thu”, “quảng cáo”, “lãi lỗ”, hoặc nhờ trợ lý AI tạo báo cáo mới trong mục <a href="tu-tao-bao-cao.html">Tự tạo báo cáo bằng AI</a>.</div>
+    </sc-if>
+    <section style="background: #2e0b57; border-radius: 22px; padding: 24px 26px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap"><h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #e3c27a">Quản trị hệ thống</h2><span style="font-size: 14px; color: #d6c4ea">Chỉ tài khoản IT nhìn thấy mục này, đang xây dựng</span></div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px">
+        <div style="background: #3d1470; border-radius: 16px; padding: 16px 18px; display: flex; gap: 12px; align-items: center">
+            <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #4f1f8a; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e3c27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 700; color: #f7f0fd">Phân quyền người dùng</span><span style="font-size: 13px; color: #d6c4ea">Vai trò, quyền xem dữ liệu, phê duyệt</span></span>
+          </div><div style="background: #3d1470; border-radius: 16px; padding: 16px 18px; display: flex; gap: 12px; align-items: center">
+            <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #4f1f8a; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e3c27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 700; color: #f7f0fd">Nhật ký AI</span><span style="font-size: 13px; color: #d6c4ea">Mọi lệnh AI đã thực hiện và bị từ chối</span></span>
+          </div><div style="background: #3d1470; border-radius: 16px; padding: 16px 18px; display: flex; gap: 12px; align-items: center">
+            <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #4f1f8a; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e3c27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 700; color: #f7f0fd">Trung tâm kết nối</span><span style="font-size: 13px; color: #d6c4ea">Trạng thái kết nối HIS, CRM, Odoo, quảng cáo</span></span>
+          </div>
+      </div>
+    </section>
+  </div>
+</div>
+</template>
+
+<script>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { q: '' }; }
+  renderVals() {
+    const all = [{"name": "Điều hành và báo cáo", "sub": "Ban Giám đốc, quản lý xem số liệu toàn chuỗi", "items": [{"href": "man-hinh-phong-ceo.html", "ic": "tv", "t": "Màn hình phòng CEO", "d": "Treo tường: chỉ số từng phòng ban, cập nhật mỗi sáng", "dev": "Màn hình lớn"}, {"href": "bang-dieu-hanh.html", "ic": "chart", "t": "Bảng điều hành toàn chuỗi", "d": "Hôm qua thu bao nhiêu, cơ sở nào yếu, việc cần xử lý", "dev": "Máy tính"}, {"href": "tu-tao-bao-cao.html", "ic": "doc", "t": "Tự tạo báo cáo bằng AI", "d": "Gõ một câu là có báo cáo, tự gửi theo lịch", "dev": "Máy tính"}, {"href": "tro-ly-ai-bao-cao-quang-cao.html", "ic": "chart", "t": "Báo cáo hiệu quả quảng cáo", "d": "1 đồng quảng cáo thu về bao nhiêu, kênh nào tốt", "dev": "Máy tính"}]}, {"name": "Trợ lý AI", "sub": "Nói việc cần làm, AI làm đúng quyền và ghi lại", "items": [{"href": "tro-ly-ai.html", "ic": "spark", "t": "Trợ lý AI cho nhân viên", "d": "Thêm khách, đặt lịch, soạn giá chờ duyệt", "dev": "Máy tính"}]}, {"name": "Ban Giám đốc trên điện thoại", "sub": "3 báo cáo quan trọng nhất, hỏi bằng giọng nói", "items": [{"href": "ban-giam-doc-tong-quan.html", "ic": "home", "t": "Tổng quan buổi sáng", "d": "Hôm qua thu bao nhiêu, lãi từ đầu tháng, việc cần quyết", "dev": "Điện thoại"}, {"href": "ban-giam-doc-lai-lo.html", "ic": "cash", "t": "Báo cáo lãi lỗ", "d": "Cứ 100 đồng khách trả thì đi đâu, còn lãi bao nhiêu", "dev": "Điện thoại"}, {"href": "ban-giam-doc-tien-tra-truoc.html", "ic": "receipt", "t": "Báo cáo tiền khách trả trước", "d": "Còn nợ khách bao nhiêu buổi, tiền thật vào bao nhiêu", "dev": "Điện thoại"}, {"href": "ban-giam-doc-suc-khoe-co-so.html", "ic": "pulse", "t": "Báo cáo sức khỏe 13 cơ sở", "d": "Cơ sở nào ổn, cơ sở nào cần xử lý", "dev": "Điện thoại"}]}, {"name": "App thành viên cho khách hàng", "sub": "Khách dùng ngay trên Zalo, không cần tải ứng dụng", "items": [{"href": "app-trang-chu.html", "ic": "user", "t": "Trang chủ thành viên", "d": "Hạng, điểm, lịch hẹn, buổi còn lại", "dev": "Điện thoại"}, {"href": "app-thu-mau-moi.html", "ic": "lips", "t": "Thử màu môi", "d": "Xem trước màu môi trước khi phun", "dev": "Điện thoại"}, {"href": "app-lich-su-giao-dich.html", "ic": "receipt", "t": "Lịch sử giao dịch", "d": "Dịch vụ, sản phẩm, điểm thưởng, hóa đơn", "dev": "Điện thoại"}, {"href": "app-uu-dai.html", "ic": "ticket", "t": "Ưu đãi và mã khuyến mãi", "d": "Mã giảm giá riêng và chương trình đang chạy", "dev": "Điện thoại"}]}];
+    const norm = (x) => (x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'd').toLowerCase();
+    const q = norm(this.state.q).trim();
+    let total = 0;
+    const groups = all.map((g) => {
+      const items = g.items.filter((c) => !q || norm(g.name + ' ' + c.t + ' ' + c.d).indexOf(q) >= 0)
+        .map((c) => Object.assign({}, c, { ['ic_' + c.ic]: true }));
+      total += items.length;
+      return Object.assign({}, g, { items });
+    }).filter((g) => g.items.length > 0);
+    return {
+      q: this.state.q, groups, empty: total === 0,
+      countText: q ? ('Tìm thấy ' + total + ' kết quả') : 'Gõ tên báo cáo để tìm nhanh',
+      onSearch: (e) => this.setState({ q: e.target.value })
+    };
+  }
+}
+dcMount(Component);
+</script>
+
+</body>
+</html>

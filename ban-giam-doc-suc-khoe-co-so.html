@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sức khỏe 13 cơ sở</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4a1488}a:hover{color:#2e0b57}
+</style>
+<style>body{margin:0;background:#e6dcef;display:flex;justify-content:center;padding:32px 16px 80px;min-height:100vh;box-sizing:border-box}</style>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #f5eefa; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #2a1740; display: flex; flex-direction: column">
+  <div style="flex: 1; padding: 18px 20px 10px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <a href="ban-giam-doc-tong-quan.html" aria-label="Về tổng quan" style="width: 44px; height: 44px; border-radius: 14px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
+      <div><div style="font-size: 18px; font-weight: 700">Sức khỏe 13 cơ sở</div><div style="font-size: 12px; color: #5d4c73">Chạm vào cơ sở để xem lý do</div></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <div style="background: #e3f4ea; border-radius: 12px; padding: 8px 10px; text-align: center"><div style="font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; color: #1f6b42">10</div><div style="font-size: 12px; color: #1f6b42">Ổn định</div></div>
+      <div style="background: #fbf0d4; border-radius: 12px; padding: 8px 10px; text-align: center"><div style="font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; color: #7a5a12">2</div><div style="font-size: 12px; color: #7a5a12">Cần theo dõi</div></div>
+      <div style="background: #fbe4ef; border-radius: 12px; padding: 8px 10px; text-align: center"><div style="font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; color: #8e1257">1</div><div style="font-size: 12px; color: #8e1257">Cần xử lý</div></div>
+    </div>
+    <div style="display: grid; grid-template-columns: 108px repeat(5, minmax(0, 1fr)); gap: 2px; font-size: 11px; color: #5d4c73; text-align: center; padding: 0 4px">
+      <span></span><span>Doanh thu</span><span>Lãi</span><span>Quay lại</span><span>Khiếu nại</span><span>Tuân thủ</span>
+    </div>
+    <div style="background: #ffffff; border-radius: 16px; padding: 4px">
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="13">
+        <button onClick="{{ r.pick }}" aria-label="{{ r.name }}" style="width: 100%; font: inherit; border: 0; cursor: pointer; display: grid; grid-template-columns: 108px repeat(5, minmax(0, 1fr)); gap: 2px; align-items: center; padding: 6px 4px; border-radius: 10px; background: {{ r.rowBg }}; color: #2a1740">
+          <span style="font-size: 13px; text-align: left; font-weight: {{ r.fw }}">{{ r.name }}</span>
+          <sc-for list="{{ r.dots }}" as="d" hint-placeholder-count="5"><span style="justify-self: center; width: 16px; height: 16px; border-radius: {{ d.rad }}; background: {{ d.c }}"></span></sc-for>
+        </button>
+      </sc-for>
+    </div>
+    <div style="display: flex; gap: 14px; font-size: 11px; color: #5d4c73; justify-content: center">
+      <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #2e9d5b; margin-right: 4px"></span>Tốt</span>
+      <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #e0a82e; margin-right: 4px"></span>Theo dõi</span>
+      <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 0px; background: #b5176f; margin-right: 4px"></span>Xử lý</span>
+    </div>
+    <div style="background: {{ sel.bg }}; border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 14px; font-weight: 700; color: {{ sel.fg }}">{{ sel.name }}: {{ sel.status }}</span>
+      <span style="font-size: 13px; line-height: 1.45">{{ sel.why }}</span>
+    </div>
+  </div>
+<nav style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: #ffffff; border-top: 1px solid #ece2f5; padding: 8px 8px 14px"><a href="ban-giam-doc-tong-quan.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #5d4c73; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>Tổng quan</a><a href="ban-giam-doc-lai-lo.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #5d4c73; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Lãi lỗ</a><a href="ban-giam-doc-tien-tra-truoc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #5d4c73; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><circle cx="12" cy="12.5" r="3"/></svg>Trả trước</a><a href="ban-giam-doc-suc-khoe-co-so.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #4a1488; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>Cơ sở</a></nav>
+</div>
+</template>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:9;font:600 14px 'Be Vietnam Pro',system-ui,sans-serif;background:#2e0b57;color:#e3c27a;text-decoration:none;padding:10px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)">Về trang chính</a>
+<script>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { i: 10 }; }
+  renderVals() {
+    const G = { c: '#2e9d5b', rad: '50%' }, Y = { c: '#e0a82e', rad: '3px' }, R = { c: '#b5176f', rad: '0px' };
+    const map = { g: G, y: Y, r: R };
+    const raw = [
+      ['Quận 10', 'ggggg', 'g', 'Vượt kế hoạch doanh thu, lãi cao nhất chuỗi.'],
+      ['Phú Nhuận', 'ggggg', 'g', 'Tỷ lệ khách quay lại cao nhất, 34%.'],
+      ['Gò Vấp', 'gggyg', 'g', 'Ổn định; 1 khiếu nại về thời gian chờ đang xử lý.'],
+      ['Thủ Đức', 'ygggg', 'g', 'Doanh thu đạt 96% kế hoạch.'],
+      ['Quận 7', 'ggggg', 'g', 'Ổn định, máy laser đến kỳ bảo trì thứ Năm.'],
+      ['Quận 6', 'ggyg' + 'g', 'g', 'Khách quay lại thấp, 18%: cần nhắc liệu trình.'],
+      ['Biên Hòa 1', 'ggggg', 'g', 'Ổn định.'],
+      ['Biên Hòa 2', 'yyggg', 'y', 'Doanh thu 80% kế hoạch, lãi 15%: theo dõi thêm 2 tuần.'],
+      ['Long Thành', 'yygyg', 'y', 'Doanh thu 86% kế hoạch, lãi 12%, 2 khiếu nại tháng này.'],
+      ['Bình Dương 1', 'ggggg', 'g', 'Ổn định, đang nhận thêm lịch từ Bình Dương 2.'],
+      ['Bình Dương 2', 'rryyg', 'r', 'Doanh thu 64% kế hoạch, lãi 4%. Bác sĩ phụ trách nghỉ nhưng quảng cáo vẫn chạy. Đề xuất: giảm quảng cáo khu vực, chuyển lịch sang Bình Dương 1.'],
+      ['Đà Nẵng', 'ggggg', 'g', 'Ổn định.'],
+      ['Đà Lạt', 'gyggg', 'g', 'Lãi 17%, thấp hơn trung bình do mặt bằng mới.']
+    ];
+    const st = { g: ['Ổn định', '#e3f4ea', '#1f6b42'], y: ['Cần theo dõi', '#fbf0d4', '#7a5a12'], r: ['Cần xử lý', '#fbe4ef', '#8e1257'] };
+    let i = this.state.i; if (i >= raw.length) i = 10;
+    const rows = raw.map(([name, d, o], k) => ({ name, dots: d.split('').map((x) => map[x]), rowBg: k === i ? '#efe5f8' : 'transparent', fw: k === i ? '700' : '400', pick: () => this.setState({ i: k }) }));
+    const s = raw[i];
+    return { rows, sel: { name: s[0], why: s[3], status: st[s[2]][0], bg: st[s[2]][1], fg: st[s[2]][2] } };
+  }
+}
+dcMount(Component);
+</script>
+
+</body>
+</html>

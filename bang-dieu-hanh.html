@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bảng điều hành Linh Anh</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4a1488}a:hover{color:#2e0b57}
+</style>
+<style>body{margin:0}</style>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="min-height: 1040px; background: #f5eefa; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #2a1740">
+  <div style="background: #2e0b57; color: #f7f0fd">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 16px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: baseline; gap: 16px">
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #e3c27a; letter-spacing: 1px">Linh Anh</span>
+        <span style="font-size: 15px; color: #d6c4ea">Trung tâm điều hành</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap">
+        <span style="font-size: 14px; color: #d6c4ea">Thứ Hai, 15/03/2027</span>
+        <span style="font-size: 13px; font-weight: 600; color: #2e0b57; background: #e3c27a; padding: 4px 10px; border-radius: 999px">Số liệu minh họa</span>
+        <span aria-label="Ban Giám đốc" style="width: 36px; height: 36px; border-radius: 50%; background: #5e22a0; color: #f7f0fd; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">GĐ</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 1360px; margin: 0 auto; padding: 28px 40px 40px; display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+      <div>
+        <h1 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 36px; font-weight: 700; color: #2e0b57">Chào buổi sáng, cả chuỗi hôm qua đạt 2,31 tỷ</h1>
+        <p style="margin: 6px 0 0; font-size: 16px; color: #5d4c73">13 cơ sở, 5 tỉnh thành. Dữ liệu chốt lúc 06:00, không ai phải tổng hợp tay.</p>
+      </div>
+      <label for="ask" style="display: flex; align-items: center; gap: 10px; background: #ffffff; border: 1px solid #ddcdee; border-radius: 14px; padding: 10px 14px; min-width: 300px; flex: 0 1 460px">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b5176f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9.4l-4.2 1.8L12 16l-1.8-4.8L6 9.4l4.2-1.8z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>
+        <input id="ask" value="Cơ sở nào giảm mạnh nhất hôm qua, vì sao?" style="border: 0; outline: none; flex: 1; font: inherit; font-size: 15px; color: #2a1740; background: transparent; min-width: 0">
+      </label>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+      <div style="background: #ffffff; border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 14px; color: #5d4c73">Doanh thu hôm qua</span>
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 40px; font-weight: 700; color: #2e0b57; line-height: 1.05">2,31 tỷ</span>
+        <span style="font-size: 14px; font-weight: 600; color: #1f6b42">Tăng 6,2% so với thứ Hai tuần trước</span>
+      </div>
+      <div style="background: #ffffff; border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 14px; color: #5d4c73">Tốn bao nhiêu để có 1 khách trả tiền</span>
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 40px; font-weight: 700; color: #2e0b57; line-height: 1.05">1,04 triệu</span>
+        <span style="font-size: 14px; font-weight: 600; color: #1f6b42">Giảm 4,1% từ khi đo đến doanh thu</span>
+      </div>
+      <div style="background: #ffffff; border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 14px; color: #5d4c73">1 đồng quảng cáo thu về</span>
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 40px; font-weight: 700; color: #2e0b57; line-height: 1.05">5,3 đồng</span>
+        <span style="font-size: 14px; color: #5d4c73">Tính bằng tiền khách thật sự trả tại cơ sở</span>
+      </div>
+      <div style="background: #2e0b57; border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 14px; color: #d6c4ea">Khách đặt lịch thực sự đến</span>
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 40px; font-weight: 700; color: #e3c27a; line-height: 1.05">46%</span>
+        <span style="font-size: 14px; font-weight: 600; color: #ffb8d9">Mỗi 10 điểm tăng thêm: khoảng +22% doanh thu</span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <section style="flex: 999 1 560px; min-width: 0; background: #ffffff; border-radius: 20px; padding: 24px 26px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px">
+          <h2 style="margin: 0; font-size: 19px; font-weight: 700; color: #2e0b57">Doanh thu hôm qua theo cơ sở</h2>
+          <span style="font-size: 13px; color: #5d4c73"><span style="display: inline-block; width: 10px; height: 10px; border-radius: 3px; background: #7a2bc2; margin-right: 6px"></span>Đạt mục tiêu <span style="display: inline-block; width: 10px; height: 10px; border-radius: 3px; background: #b5176f; margin: 0 6px 0 14px"></span>Dưới 80% mục tiêu</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 9px">
+          <sc-for list="{{ branches }}" as="b" hint-placeholder-count="13">
+            <div style="display: grid; grid-template-columns: 170px minmax(0, 1fr) 70px; align-items: center; gap: 12px; font-size: 14px">
+              <span>{{ b.name }}</span>
+              <div style="height: 14px; background: #efe5f8; border-radius: 7px; overflow: hidden"><div style="height: 14px; border-radius: 7px; width: {{ b.w }}; background: {{ b.color }}"></div></div>
+              <span style="text-align: right; font-weight: 600; font-variant-numeric: tabular-nums">{{ b.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+        <section style="background: #ffffff; border-radius: 20px; padding: 24px 26px; display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-size: 19px; font-weight: 700; color: #2e0b57">Từ quảng cáo đến doanh thu, 30 ngày</h2>
+          <sc-for list="{{ funnel }}" as="f" hint-placeholder-count="6">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; background: {{ f.bg }}; color: #ffffff; border-radius: 10px; padding: 9px 14px; width: {{ f.w }}; box-sizing: border-box; font-size: 14px">
+              <span style="font-weight: 600">{{ f.name }}</span><span style="font-variant-numeric: tabular-nums">{{ f.v }}</span>
+            </div>
+          </sc-for>
+          <p style="margin: 4px 0 0; font-size: 14px; line-height: 1.5; color: #5d4c73">Mất khách nhiều nhất ở bước đã hẹn nhưng không đến. Nhắc lịch tự động qua Zalo đang được thử ở 2 cơ sở.</p>
+        </section>
+
+        <section style="background: #ffffff; border-radius: 20px; padding: 24px 26px; display: flex; flex-direction: column; gap: 14px">
+          <h2 style="margin: 0; font-size: 19px; font-weight: 700; color: #2e0b57">Cần xử lý hôm nay</h2>
+          <div style="display: flex; gap: 12px; align-items: flex-start">
+            <span style="flex: none; width: 34px; height: 34px; border-radius: 10px; background: #fbe4ef; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a3135f" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2 18a2 2 0 001.7 3h16.6a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg></span>
+            <div style="font-size: 14px; line-height: 1.45"><b>Bình Dương 2 chỉ đạt 64% mục tiêu.</b> Bác sĩ phụ trách nghỉ 2 ngày nhưng quảng cáo vẫn chạy. Đề xuất: giảm ngân sách khu vực, chuyển lịch sang Bình Dương 1.</div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start">
+            <span style="flex: none; width: 34px; height: 34px; border-radius: 10px; background: #efe5f8; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5e22a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <div style="font-size: 14px; line-height: 1.45"><b>Chứng chỉ hành nghề sắp hết hạn:</b> [Tên bác sĩ], cơ sở 2, còn 14 ngày. Hệ thống sẽ khóa dịch vụ liên quan nếu chưa gia hạn.</div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start">
+            <span style="flex: none; width: 34px; height: 34px; border-radius: 10px; background: #f6edd9; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a5a12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></span>
+            <div style="font-size: 14px; line-height: 1.45"><b>Máy laser cơ sở 5</b> đã dùng 92% số lần bắn trước kỳ bảo trì. Lịch bảo trì đề xuất: tối thứ Năm.</div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:9;font:600 14px 'Be Vietnam Pro',system-ui,sans-serif;background:#2e0b57;color:#e3c27a;text-decoration:none;padding:10px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)">Về trang chính</a>
+<script>
+class Component extends DCLogic {
+  renderVals() {
+    const raw = [
+      ['Cơ sở 1, Quận 10', 268, 250], ['Cơ sở 2, Phú Nhuận', 231, 220], ['Cơ sở 3, Gò Vấp', 205, 210],
+      ['Cơ sở 4, Thủ Đức', 192, 200], ['Cơ sở 5, Quận 7', 246, 230], ['Cơ sở 6, Quận 6', 174, 190],
+      ['Biên Hòa 1', 163, 170], ['Biên Hòa 2', 128, 160], ['Long Thành', 112, 130],
+      ['Bình Dương 1', 158, 165], ['Bình Dương 2', 96, 150], ['Đà Nẵng', 141, 150], ['Đà Lạt', 96, 105]
+    ];
+    const max = 268;
+    const branches = raw.map(([name, v, t]) => ({
+      name, v: v + ' tr', w: (v / max * 100).toFixed(1) + '%',
+      color: v < t * 0.8 ? '#b5176f' : '#7a2bc2'
+    }));
+    const steps = [['Để lại số qua quảng cáo', '18.420'], ['Được tư vấn', '12.960'], ['Đặt lịch', '6.380'], ['Khách đến cơ sở', '2.935'], ['Chi tiền', '2.410'], ['Quay lại trong 90 ngày', '860']];
+    const bgs = ['#2e0b57', '#4a1488', '#5e22a0', '#a3135f', '#7a2bc2', '#8a6a24'];
+    const funnel = steps.map(([name, v], i) => ({ name, v, w: (100 - i * 9) + '%', bg: bgs[i] }));
+    return { branches, funnel };
+  }
+}
+dcMount(Component);
+</script>
+
+</body>
+</html>

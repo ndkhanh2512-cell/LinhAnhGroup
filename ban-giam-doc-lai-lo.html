@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lãi lỗ tháng 2/2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4a1488}a:hover{color:#2e0b57}
+</style>
+<style>body{margin:0;background:#e6dcef;display:flex;justify-content:center;padding:32px 16px 80px;min-height:100vh;box-sizing:border-box}</style>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #f5eefa; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #2a1740; display: flex; flex-direction: column">
+  <div style="flex: 1; padding: 18px 20px 10px; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <a href="ban-giam-doc-tong-quan.html" aria-label="Về tổng quan" style="width: 44px; height: 44px; border-radius: 14px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
+      <div><div style="font-size: 18px; font-weight: 700">Lãi lỗ tháng 2/2027</div><div style="font-size: 12px; color: #5d4c73">Tự cập nhật mỗi sáng từ kế toán và doanh thu</div></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; background: #e8dcf4; padding: 4px; border-radius: 14px">
+      <button onClick="{{ showAll }}" style="height: 40px; border: 0; border-radius: 10px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; background: {{ tA.bg }}; color: {{ tA.fg }}">Cả chuỗi</button>
+      <button onClick="{{ showBranch }}" style="height: 40px; border: 0; border-radius: 10px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; background: {{ tB.bg }}; color: {{ tB.fg }}">Theo cơ sở</button>
+    </div>
+    <sc-if value="{{ isAll }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div style="background: #2e0b57; border-radius: 18px; padding: 16px 18px; color: #f7f0fd; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 13px; color: #d6c4ea">Lãi trước thuế</span>
+          <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 34px; font-weight: 700; color: #e3c27a; line-height: 1.1">16,2 tỷ</span>
+          <span style="font-size: 13px; color: #d6c4ea">Trên doanh thu 64,7 tỷ · cao hơn kế hoạch 0,8 tỷ</span>
+        </div>
+        <span style="font-size: 15px; font-weight: 700; color: #2e0b57">Cứ 100 đồng khách trả thì đi đâu?</span>
+        <div style="display: flex; height: 22px; border-radius: 8px; overflow: hidden">
+          <sc-for list="{{ parts }}" as="p" hint-placeholder-count="7"><div style="width: {{ p.w }}; background: {{ p.c }}"></div></sc-for>
+        </div>
+        <div style="background: #ffffff; border-radius: 16px; padding: 6px 14px">
+          <sc-for list="{{ parts }}" as="p" hint-placeholder-count="7">
+            <div style="display: grid; grid-template-columns: 14px minmax(0, 1fr) 62px 62px; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid #f1e9f8; font-size: 14px">
+              <span style="width: 12px; height: 12px; border-radius: 3px; background: {{ p.c }}"></span>
+              <span style="font-weight: {{ p.fw }}">{{ p.name }}</span>
+              <span style="text-align: right; font-weight: 700; font-variant-numeric: tabular-nums">{{ p.d }}</span>
+              <span style="text-align: right; color: #5d4c73; font-variant-numeric: tabular-nums">{{ p.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size: 13px; line-height: 1.45; color: #5d4c73"><b style="color: #8e1257">AI nhận xét:</b> lương và hoa hồng tăng 2 đồng so với tháng 1 vì thưởng Tết; quảng cáo giảm 0,4 đồng.</div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isBranch }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 13px; color: #5d4c73">Tỷ lệ lãi trên doanh thu của từng cơ sở, tháng 2</span>
+        <sc-for list="{{ branches }}" as="b" hint-placeholder-count="13">
+          <div style="display: grid; grid-template-columns: 110px minmax(0, 1fr) 40px; gap: 8px; align-items: center; font-size: 13px">
+            <span>{{ b.name }}</span>
+            <div style="height: 12px; background: #efe5f8; border-radius: 6px; overflow: hidden"><div style="height: 12px; border-radius: 6px; width: {{ b.w }}; background: {{ b.c }}"></div></div>
+            <span style="text-align: right; font-weight: 700; color: {{ b.tc }}">{{ b.m }}</span>
+          </div>
+        </sc-for>
+        <span style="font-size: 12px; color: #5d4c73; margin-top: 4px">Hồng: dưới 8% · vàng đậm: 8 đến 15%</span>
+      </div>
+    </sc-if>
+  </div>
+<nav style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: #ffffff; border-top: 1px solid #ece2f5; padding: 8px 8px 14px"><a href="ban-giam-doc-tong-quan.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #5d4c73; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>Tổng quan</a><a href="ban-giam-doc-lai-lo.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #4a1488; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Lãi lỗ</a><a href="ban-giam-doc-tien-tra-truoc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #5d4c73; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><circle cx="12" cy="12.5" r="3"/></svg>Trả trước</a><a href="ban-giam-doc-suc-khoe-co-so.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #5d4c73; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>Cơ sở</a></nav>
+</div>
+</template>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:9;font:600 14px 'Be Vietnam Pro',system-ui,sans-serif;background:#2e0b57;color:#e3c27a;text-decoration:none;padding:10px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)">Về trang chính</a>
+<script>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { v: 'all' }; }
+  renderVals() {
+    const parts = [
+      ['Vật tư, mỹ phẩm', 14, '9,1 tỷ', '#9b7bc4'], ['Lương, hoa hồng', 30, '19,4 tỷ', '#7a2bc2'], ['Thuê mặt bằng', 12, '7,8 tỷ', '#5e22a0'],
+      ['Quảng cáo', 4, '2,5 tỷ', '#b5176f'], ['Vận hành, quản lý', 10, '6,5 tỷ', '#4a1488'], ['Khấu hao máy', 5, '3,2 tỷ', '#8a6a24'], ['Còn lại là lãi', 25, '16,2 tỷ', '#2e9d5b']
+    ].map(([name, d, v, c]) => ({ name, d: d + ' đồng', v, c, w: d + '%', fw: name === 'Còn lại là lãi' ? '700' : '400' }));
+    const raw = [['Quận 10', 31], ['Phú Nhuận', 29], ['Quận 7', 28], ['Gò Vấp', 26], ['Thủ Đức', 24], ['Biên Hòa 1', 23], ['Bình Dương 1', 22], ['Quận 6', 21], ['Đà Nẵng', 19], ['Đà Lạt', 17], ['Biên Hòa 2', 15], ['Long Thành', 12], ['Bình Dương 2', 4]];
+    const branches = raw.map(([name, m]) => ({ name, m: m + '%', w: (m / 31 * 100).toFixed(0) + '%', c: m < 8 ? '#b5176f' : (m <= 15 ? '#c9962e' : '#7a2bc2'), tc: m < 8 ? '#a3135f' : '#2a1740' }));
+    const v = this.state.v, on = { bg: '#ffffff', fg: '#4a1488' }, off = { bg: 'transparent', fg: '#5d4c73' };
+    return { parts, branches, isAll: v === 'all', isBranch: v === 'branch', tA: v === 'all' ? on : off, tB: v === 'branch' ? on : off,
+      showAll: () => this.setState({ v: 'all' }), showBranch: () => this.setState({ v: 'branch' }) };
+  }
+}
+dcMount(Component);
+</script>
+
+</body>
+</html>

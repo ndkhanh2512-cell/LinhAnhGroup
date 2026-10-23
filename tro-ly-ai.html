@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trợ lý AI Linh Anh</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4a1488}a:hover{color:#2e0b57}
+</style>
+<style>body{margin:0}</style>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="min-height: 1040px; background: #f5eefa; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #2a1740">
+  <div style="background: #2e0b57; color: #f7f0fd">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 16px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: baseline; gap: 16px">
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #e3c27a; letter-spacing: 1px">Linh Anh</span>
+        <span style="font-size: 15px; color: #d6c4ea">Trợ lý AI</span>
+      </div>
+      <span style="font-size: 13px; font-weight: 600; color: #2e0b57; background: #e3c27a; padding: 4px 10px; border-radius: 999px">Số liệu minh họa</span>
+    </div>
+  </div>
+
+  <div style="max-width: 1360px; margin: 0 auto; padding: 28px 40px 40px; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+    <aside style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="background: #2e0b57; color: #f7f0fd; border-radius: 20px; padding: 22px">
+        <p style="margin: 0; font-size: 14px; color: #d6c4ea">Đang làm việc với vai trò</p>
+        <p style="margin: 4px 0 0; font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #e3c27a">Trưởng marketing</p>
+        <p style="margin: 6px 0 0; font-size: 14px; color: #d6c4ea">Ra lệnh qua Zalo, Teams hoặc màn hình này</p>
+      </div>
+      <div style="background: #ffffff; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 17px; font-weight: 700; color: #2e0b57">AI được làm thay bạn</h2>
+        <sc-for list="{{ allowed }}" as="a" hint-placeholder-count="3">
+          <div style="display: flex; gap: 10px; align-items: center; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f6b42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>{{ a }}</span></div>
+        </sc-for>
+        <h2 style="margin: 8px 0 0; font-size: 17px; font-weight: 700; color: #2e0b57">Cần người duyệt</h2>
+        <sc-for list="{{ needApproval }}" as="a" hint-placeholder-count="2">
+          <div style="display: flex; gap: 10px; align-items: center; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a3135f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg><span>{{ a }}</span></div>
+        </sc-for>
+      </div>
+    </aside>
+
+    <main style="flex: 999 1 560px; min-width: 0; background: #ffffff; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 18px">
+      <div style="align-self: flex-end; max-width: 78%; background: #4a1488; color: #fbf6ff; border-radius: 16px 16px 4px 16px; padding: 12px 16px; font-size: 15px; line-height: 1.5">Tạo giá khuyến mãi phun môi giảm 20% tại 6 cơ sở TP.HCM trong tháng 11</div>
+
+      <div style="align-self: flex-start; max-width: 88%; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; gap: 10px; align-items: center"><span style="width: 32px; height: 32px; border-radius: 10px; background: #f6edd9; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a5a12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9.4l-4.2 1.8L12 16l-1.8-4.8L6 9.4l4.2-1.8z"/></svg></span><span style="font-size: 15px; font-weight: 600">Tôi đã soạn bảng giá nháp. Giá chưa được áp dụng.</span></div>
+        <div style="display: flex; flex-direction: column; gap: 6px; padding-left: 42px">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 14px; color: #5d4c73"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a2bc2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>{{ s }}</span></div>
+          </sc-for>
+        </div>
+        <div style="margin-left: 42px; border: 1px solid #e2d3f0; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; background: #fcf9fe">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+            <span style="font-size: 16px; font-weight: 700; color: #2e0b57">Bảng giá nháp, chưa áp dụng</span>
+            <span style="font-size: 13px; font-weight: 700; color: #8e1257; background: #fbe4ef; padding: 4px 12px; border-radius: 999px">Chờ Ban Giám đốc duyệt</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; font-size: 14px">
+            <div><div style="color: #5d4c73">Dịch vụ</div><div style="font-weight: 600">Phun môi Personal 4K Color</div></div>
+            <div><div style="color: #5d4c73">Mức giảm</div><div style="font-weight: 600">20%, trong hạn mức 25%</div></div>
+            <div><div style="color: #5d4c73">Cơ sở áp dụng</div><div style="font-weight: 600">Cơ sở 1 đến 6, TP.HCM</div></div>
+            <div><div style="color: #5d4c73">Thời gian</div><div style="font-weight: 600">01/11 đến 30/11</div></div>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <button style="font: inherit; font-size: 14px; font-weight: 600; border: 0; border-radius: 10px; padding: 11px 16px; background: #4a1488; color: #ffffff; cursor: pointer">Xem trước bảng giá</button>
+            <button style="font: inherit; font-size: 14px; font-weight: 600; border: 1px solid #d8c6ea; border-radius: 10px; padding: 11px 16px; background: #ffffff; color: #4a1488; cursor: pointer">Hủy nháp</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="align-self: flex-end; max-width: 78%; background: #4a1488; color: #fbf6ff; border-radius: 16px 16px 4px 16px; padding: 12px 16px; font-size: 15px; line-height: 1.5">Thêm khách Nguyễn Thị Lan, 0909 123 456, quan tâm trẻ hóa da, hẹn thứ Bảy cơ sở 3</div>
+
+      <div style="align-self: flex-start; max-width: 88%; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; gap: 10px; align-items: center"><span style="width: 32px; height: 32px; border-radius: 10px; background: #f6edd9; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a5a12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9.4l-4.2 1.8L12 16l-1.8-4.8L6 9.4l4.2-1.8z"/></svg></span><span style="font-size: 15px; font-weight: 600">Đã tạo hồ sơ và đặt lịch. Số điện thoại chưa có trong hệ thống.</span></div>
+        <div style="margin-left: 42px; border: 1px solid #e2d3f0; border-radius: 16px; padding: 16px 20px; display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; font-size: 14px; background: #fcf9fe">
+          <span><b>Nguyễn Thị Lan</b></span><span>Trẻ hóa da</span><span>Thứ Bảy, 9:30, cơ sở 3</span>
+          <span style="font-size: 13px; font-weight: 700; color: #1f6b42; background: #e3f4ea; padding: 4px 12px; border-radius: 999px">Đã lưu vào hồ sơ khách</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 8px">
+        <a href="tro-ly-ai-bao-cao-quang-cao.html" style="font-size: 14px; font-weight: 600; text-decoration: none; border: 1px solid #b5176f; background: #fff6fa; color: #8e1257; border-radius: 999px; padding: 10px 14px">Xem báo cáo hiệu quả quảng cáo</a>
+        <sc-for list="{{ suggestions }}" as="g" hint-placeholder-count="3">
+          <button style="font: inherit; font-size: 14px; border: 1px solid #e2d3f0; background: #ffffff; color: #2a1740; border-radius: 999px; padding: 10px 14px; cursor: pointer">{{ g }}</button>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center">
+        <label for="cmd" style="flex: 1; display: flex; align-items: center; border: 1px solid #d8c6ea; border-radius: 14px; padding: 4px 6px 4px 16px; background: #ffffff">
+          <input id="cmd" placeholder="Nói hoặc gõ việc cần làm" style="flex: 1; border: 0; outline: none; font: inherit; font-size: 15px; padding: 10px 0; background: transparent; color: #2a1740; min-width: 0">
+          <button aria-label="Nói bằng giọng" style="width: 44px; height: 44px; border: 0; border-radius: 10px; background: #f3eafb; cursor: pointer; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg></button>
+        </label>
+        <button style="height: 52px; font: inherit; font-size: 15px; font-weight: 700; border: 0; border-radius: 14px; padding: 0 22px; background: #b5176f; color: #ffffff; cursor: pointer">Gửi</button>
+      </div>
+    </main>
+
+    <aside style="flex: 1 1 300px; min-width: 0; background: #ffffff; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-size: 17px; font-weight: 700; color: #2e0b57">Nhật ký thao tác</h2>
+      <sc-for list="{{ log }}" as="e" hint-placeholder-count="5">
+        <div style="display: flex; flex-direction: column; gap: 4px; padding-bottom: 12px; border-bottom: 1px solid #efe5f8">
+          <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center"><span style="font-size: 13px; color: #5d4c73; font-variant-numeric: tabular-nums">{{ e.time }}</span><span style="font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: {{ e.bg }}; color: {{ e.fg }}">{{ e.status }}</span></div>
+          <span style="font-size: 14px; line-height: 1.45">{{ e.text }}</span>
+        </div>
+      </sc-for>
+      <p style="margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: #5d4c73">Mỗi lệnh ghi lại người ra lệnh, việc AI đã làm và kết quả kiểm tra quyền. Hệ thống nghiệp vụ kiểm tra quy tắc lần cuối.</p>
+    </aside>
+  </div>
+</div>
+</template>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:9;font:600 14px 'Be Vietnam Pro',system-ui,sans-serif;background:#2e0b57;color:#e3c27a;text-decoration:none;padding:10px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)">Về trang chính</a>
+<script>
+class Component extends DCLogic {
+  renderVals() {
+    const ok = { bg: '#e3f4ea', fg: '#1f6b42' };
+    const wait = { bg: '#fbe4ef', fg: '#8e1257' };
+    const read = { bg: '#efe5f8', fg: '#4a1488' };
+    const deny = { bg: '#f3e1e1', fg: '#8a1c1c' };
+    return {
+      allowed: ['Tạo, sửa hồ sơ khách', 'Đặt và đổi lịch hẹn', 'Xem báo cáo marketing'],
+      needApproval: ['Đổi giá, chiết khấu', 'Xóa dữ liệu khách'],
+      steps: ['Hiểu yêu cầu: phun môi, giảm 20%, 6 cơ sở, tháng 11', 'Kiểm tra quy tắc: hạn mức giảm của dịch vụ này là 25%', 'Soạn bảng giá nháp, gửi Ban Giám đốc duyệt'],
+      suggestions: ['Tuần này TikTok tốn bao nhiêu cho 1 khách?', 'Nhắc lịch cho khách hẹn ngày mai', 'Khách nào để lại số mà chưa được gọi sau 5 phút?'],
+      log: [
+        { time: '09:42', text: 'Trưởng marketing tạo khách Nguyễn Thị Lan, đặt lịch cơ sở 3', status: 'Hoàn tất', ...ok },
+        { time: '09:40', text: 'Trưởng marketing soạn giá giảm 20% phun môi', status: 'Chờ duyệt', ...wait },
+        { time: '09:31', text: 'Lễ tân cơ sở 3 yêu cầu đổi giá dịch vụ', status: 'Từ chối, không đủ quyền', ...deny },
+        { time: '08:15', text: 'Ban Giám đốc hỏi doanh thu Bình Dương 2', status: 'Chỉ đọc', ...read },
+        { time: '07:58', text: 'Quản lý cơ sở 5 đặt lịch bảo trì máy laser', status: 'Hoàn tất', ...ok }
+      ]
+    };
+  }
+}
+dcMount(Component);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tự tạo báo cáo bằng AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4a1488}a:hover{color:#2e0b57}
+</style>
+<style>body{margin:0}</style>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="min-height: 1180px; background: #f5eefa; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #2a1740">
+  <div style="background: #2e0b57; color: #f7f0fd">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 16px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: baseline; gap: 16px">
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #e3c27a; letter-spacing: 1px">Linh Anh</span>
+        <span style="font-size: 15px; color: #d6c4ea">Tự tạo báo cáo bằng AI</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <span style="font-size: 14px; color: #d6c4ea">Quản lý vận hành khu vực TP.HCM</span>
+        <span style="font-size: 13px; font-weight: 600; color: #2e0b57; background: #e3c27a; padding: 4px 10px; border-radius: 999px">Số liệu minh họa</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 1360px; margin: 0 auto; padding: 28px 40px 40px; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+    <aside style="flex: 1 1 260px; min-width: 0; background: #ffffff; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+      <label for="findReport" style="display: flex; align-items: center; gap: 8px; border: 1px solid #d8c6ea; border-radius: 12px; padding: 4px 12px; background: #fcf9fe"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a2bc2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="findReport" value="{{ q }}" onChange="{{ onSearch }}" placeholder="Tìm tên báo cáo, ví dụ: lãi lỗ" style="flex: 1; min-width: 0; border: 0; outline: none; font: inherit; font-size: 14px; padding: 9px 0; background: transparent; color: #2a1740"></label>
+      <sc-if value="{{ hasSamples }}" hint-placeholder-val="{{ true }}">
+        <h2 style="margin: 4px 0 0; font-size: 17px; font-weight: 700; color: #2e0b57">Báo cáo mẫu cho Ban Giám đốc</h2>
+        <sc-for list="{{ samples }}" as="r" hint-placeholder-count="3">
+          <a href="{{ r.href }}" style="text-decoration: none; color: #2a1740; display: flex; flex-direction: column; gap: 3px; padding: 12px 14px; border-radius: 14px; border: 1px solid #e2d3f0"><span style="font-size: 14px; font-weight: 700; color: #4a1488">{{ r.name }}</span><span style="font-size: 12px; color: #5d4c73">{{ r.when }}</span></a>
+        </sc-for>
+      </sc-if>
+      <sc-if value="{{ hasSaved }}" hint-placeholder-val="{{ true }}">
+        <h2 style="margin: 8px 0 0; font-size: 17px; font-weight: 700; color: #2e0b57">Báo cáo của tôi</h2>
+        <sc-for list="{{ saved }}" as="r" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 14px; background: {{ r.bg }}">
+            <span style="font-size: 14px; font-weight: 600; line-height: 1.35">{{ r.name }}</span>
+            <span style="font-size: 12px; color: #5d4c73">{{ r.when }}</span>
+          </div>
+        </sc-for>
+      </sc-if>
+      <sc-if value="{{ noResult }}" hint-placeholder-val="{{ false }}">
+        <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #5d4c73">Không có báo cáo nào tên như vậy. Gõ yêu cầu vào ô bên phải để AI tạo báo cáo mới.</p>
+      </sc-if>
+      <p style="margin: 6px 0 0; font-size: 13px; line-height: 1.5; color: #5d4c73">Mỗi báo cáo được tạo bằng một câu yêu cầu. Không cần gửi phiếu cho IT, không chờ vài ngày.</p>
+    </aside>
+
+    <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="background: #ffffff; border-radius: 20px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px">
+        <label for="prompt" style="font-size: 15px; font-weight: 700; color: #2e0b57">Anh chị cần báo cáo gì?</label>
+        <textarea id="prompt" rows="3" style="font: inherit; font-size: 16px; line-height: 1.5; border: 1px solid #d8c6ea; border-radius: 14px; padding: 14px 16px; resize: none; color: #2a1740; background: #fcf9fe">So sánh 6 cơ sở TP.HCM tháng 2: số ca dịch vụ, doanh thu, tỷ lệ khách quay lại trong 90 ngày và điểm đánh giá. Xếp hạng và gửi tôi mỗi sáng thứ Hai.</textarea>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between">
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <sc-for list="{{ examples }}" as="e" hint-placeholder-count="3">
+              <button style="font: inherit; font-size: 13px; border: 1px solid #e2d3f0; background: #ffffff; color: #4a1488; border-radius: 999px; padding: 8px 12px; cursor: pointer">{{ e }}</button>
+            </sc-for>
+          </div>
+          <button style="height: 46px; font: inherit; font-size: 15px; font-weight: 700; border: 0; border-radius: 12px; padding: 0 20px; background: #b5176f; color: #ffffff; cursor: pointer">Tạo báo cáo</button>
+        </div>
+      </div>
+
+      <div style="background: #ffffff; border-radius: 20px; padding: 22px 24px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; gap: 10px; align-items: center">
+          <span style="width: 32px; height: 32px; border-radius: 10px; background: #f6edd9; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a5a12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9.4l-4.2 1.8L12 16l-1.8-4.8L6 9.4l4.2-1.8z"/></svg></span>
+          <span style="font-size: 15px; font-weight: 600">AI đã hiểu yêu cầu như sau, anh chị kiểm tra trước khi lưu</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+          <sc-for list="{{ spec }}" as="s" hint-placeholder-count="4">
+            <div style="background: #f6f0fb; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px">
+              <span style="font-size: 12px; color: #5d4c73">{{ s.k }}</span>
+              <span style="font-size: 13px; font-weight: 600; line-height: 1.35">{{ s.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="border: 1px solid #e2d3f0; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; background: #fcf9fe">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+            <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: #2e0b57">Xếp hạng 6 cơ sở TP.HCM, tháng 2/2027</span><span style="font-size: 13px; color: #5d4c73">Xếp theo tỷ lệ khách quay lại trong 90 ngày</span></div>
+            <div style="display: flex; gap: 4px; background: #efe5f8; padding: 4px; border-radius: 12px">
+              <button onClick="{{ showChart }}" style="height: 36px; padding: 0 14px; border: 0; border-radius: 9px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; background: {{ tabC.bg }}; color: {{ tabC.fg }}">Biểu đồ</button>
+              <button onClick="{{ showTable }}" style="height: 36px; padding: 0 14px; border: 0; border-radius: 9px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; background: {{ tabT.bg }}; color: {{ tabT.fg }}">Bảng số liệu</button>
+            </div>
+          </div>
+
+          <sc-if value="{{ isChart }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+                <div style="display: grid; grid-template-columns: 28px 170px minmax(0, 1fr) 56px; gap: 10px; align-items: center; font-size: 14px">
+                  <span style="width: 26px; height: 26px; border-radius: 50%; background: {{ r.rankBg }}; color: {{ r.rankFg }}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700">{{ r.rank }}</span>
+                  <span>{{ r.name }}</span>
+                  <div style="height: 16px; background: #efe5f8; border-radius: 8px; overflow: hidden"><div style="height: 16px; border-radius: 8px; width: {{ r.w }}; background: {{ r.bar }}"></div></div>
+                  <span style="text-align: right; font-weight: 700; font-variant-numeric: tabular-nums">{{ r.ret }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isTable }}" hint-placeholder-val="{{ false }}">
+            <div style="overflow-x: auto">
+              <div style="min-width: 560px; display: flex; flex-direction: column">
+                <div style="display: grid; grid-template-columns: 40px minmax(0, 1.6fr) repeat(4, minmax(0, 1fr)); gap: 10px; font-size: 12px; color: #5d4c73; padding-bottom: 8px; border-bottom: 1px solid #e8dcf4"><span>Hạng</span><span>Cơ sở</span><span style="text-align: right">Số ca</span><span style="text-align: right">Doanh thu</span><span style="text-align: right">Quay lại 90 ngày</span><span style="text-align: right">Đánh giá</span></div>
+                <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+                  <div style="display: grid; grid-template-columns: 40px minmax(0, 1.6fr) repeat(4, minmax(0, 1fr)); gap: 10px; font-size: 14px; padding: 9px 0; border-bottom: 1px solid #f1e9f8; font-variant-numeric: tabular-nums">
+                    <span style="font-weight: 700">{{ r.rank }}</span><span>{{ r.name }}</span><span style="text-align: right">{{ r.cases }}</span><span style="text-align: right">{{ r.rev }}</span><span style="text-align: right; font-weight: 700; color: {{ r.retColor }}">{{ r.ret }}</span><span style="text-align: right">{{ r.score }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <div style="background: #ffffff; border: 1px solid #f3cfe2; border-radius: 14px; padding: 12px 16px; font-size: 14px; line-height: 1.5"><b style="color: #8e1257">Nhận định:</b> Quận 6 có doanh thu khá nhưng tỷ lệ quay lại thấp nhất, 18%. Khách chủ yếu làm dịch vụ một lần, chưa được nhắc liệu trình tiếp theo.</div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+          <button onClick="{{ schedule }}" style="font: inherit; font-size: 14px; font-weight: 600; border: 0; border-radius: 10px; padding: 11px 16px; background: {{ schedBtn.bg }}; color: {{ schedBtn.fg }}; cursor: pointer">{{ schedBtn.label }}</button>
+          <button style="font: inherit; font-size: 14px; font-weight: 600; border: 1px solid #d8c6ea; border-radius: 10px; padding: 11px 16px; background: #ffffff; color: #4a1488; cursor: pointer">Lưu vào báo cáo của tôi</button>
+          <button style="font: inherit; font-size: 14px; font-weight: 600; border: 1px solid #d8c6ea; border-radius: 10px; padding: 11px 16px; background: #ffffff; color: #4a1488; cursor: pointer">Chia sẻ cho quản lý cơ sở</button>
+          <button style="font: inherit; font-size: 14px; font-weight: 600; border: 1px solid #d8c6ea; border-radius: 10px; padding: 11px 16px; background: #ffffff; color: #4a1488; cursor: pointer">Xuất Excel</button>
+        </div>
+        <label for="refine" style="display: flex; align-items: center; gap: 10px; border: 1px solid #d8c6ea; border-radius: 14px; padding: 4px 6px 4px 16px; background: #ffffff">
+          <input id="refine" placeholder="Chỉnh bằng lời, ví dụ: thêm cột doanh thu trên mỗi ca" style="flex: 1; border: 0; outline: none; font: inherit; font-size: 15px; padding: 11px 0; background: transparent; color: #2a1740; min-width: 0">
+          <button style="height: 42px; font: inherit; font-size: 14px; font-weight: 700; border: 0; border-radius: 10px; padding: 0 16px; background: #4a1488; color: #ffffff; cursor: pointer">Cập nhật</button>
+        </label>
+      </div>
+    </main>
+
+    <aside style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="background: #2e0b57; color: #f7f0fd; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 17px; font-weight: 700; color: #e3c27a">Dữ liệu vai trò này được xem</h2>
+        <sc-for list="{{ access }}" as="a" hint-placeholder-count="4">
+          <div style="display: flex; gap: 10px; align-items: center; font-size: 14px"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{ a.dot }}"></span><span style="color: {{ a.fg }}">{{ a.t }}</span></div>
+        </sc-for>
+        <p style="margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: #d6c4ea">AI chỉ lấy dữ liệu trong phạm vi được phép. Hồ sơ điều trị và ảnh khách không bao giờ đưa vào báo cáo quản trị.</p>
+      </div>
+      <div style="background: #ffffff; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 17px; font-weight: 700; color: #2e0b57">Mỗi con số chỉ có một cách tính</h2>
+        <sc-for list="{{ glossary }}" as="g" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 10px; border-bottom: 1px solid #efe5f8">
+            <span style="font-size: 14px; font-weight: 600">{{ g.k }}</span>
+            <span style="font-size: 13px; line-height: 1.45; color: #5d4c73">{{ g.v }}</span>
+          </div>
+        </sc-for>
+        <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #5d4c73">Mọi báo cáo dùng chung định nghĩa nên số liệu giữa các phòng ban luôn khớp nhau.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+</template>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:9;font:600 14px 'Be Vietnam Pro',system-ui,sans-serif;background:#2e0b57;color:#e3c27a;text-decoration:none;padding:10px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)">Về trang chính</a>
+<script>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { view: 'chart', scheduled: false, q: '' }; }
+  renderVals() {
+    const v0 = this.baseVals();
+    const norm = (x) => (x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'd').toLowerCase();
+    const q = norm(this.state.q).trim();
+    const hit = (r) => !q || norm(r.name + ' ' + r.when).indexOf(q) >= 0;
+    const samples = [
+      { name: 'Lãi lỗ hằng tháng', when: 'Cứ 100 đồng thu vào đi đâu, lãi bao nhiêu', href: 'ban-giam-doc-lai-lo.html' },
+      { name: 'Tiền khách trả trước', when: 'Còn nợ khách bao nhiêu buổi, dòng tiền thật', href: 'ban-giam-doc-tien-tra-truoc.html' },
+      { name: 'Sức khỏe 13 cơ sở', when: 'Xanh, vàng, đỏ theo 5 tiêu chí', href: 'ban-giam-doc-suc-khoe-co-so.html' }
+    ].filter(hit);
+    const saved = v0.saved.filter(hit);
+    return Object.assign({}, v0, { q: this.state.q, samples, saved, hasSamples: samples.length > 0, hasSaved: saved.length > 0, noResult: samples.length + saved.length === 0, onSearch: (e) => this.setState({ q: e.target.value }) });
+  }
+  baseVals() {
+    const raw = [
+      ['Cơ sở 2, Phú Nhuận', '1.284', '6,9 tỷ', 34, '4,8'],
+      ['Cơ sở 1, Quận 10', '1.410', '8,0 tỷ', 31, '4,7'],
+      ['Cơ sở 5, Quận 7', '1.322', '7,4 tỷ', 29, '4,7'],
+      ['Cơ sở 3, Gò Vấp', '1.150', '6,2 tỷ', 26, '4,6'],
+      ['Cơ sở 4, Thủ Đức', '1.096', '5,8 tỷ', 23, '4,5'],
+      ['Cơ sở 6, Quận 6', '1.018', '5,2 tỷ', 18, '4,4']
+    ];
+    const rows = raw.map(([name, cases, rev, ret, score], i) => ({
+      rank: i + 1, name, cases, rev, ret: ret + '%', score,
+      w: (ret / 34 * 100).toFixed(0) + '%',
+      bar: ret < 20 ? '#b5176f' : '#7a2bc2', retColor: ret < 20 ? '#a3135f' : '#2a1740',
+      rankBg: i === 0 ? '#e3c27a' : '#efe5f8', rankFg: i === 0 ? '#2e0b57' : '#4a1488'
+    }));
+    const on = { bg: '#ffffff', fg: '#4a1488' }, off = { bg: 'transparent', fg: '#5d4c73' };
+    const v = this.state.view, sch = this.state.scheduled;
+    return {
+      saved: [
+        { name: 'Doanh thu theo cơ sở, hằng ngày', when: 'Tự gửi 6:30 mỗi sáng', bg: '#f6f0fb' },
+        { name: 'Khách hẹn mà không đến, theo người tư vấn', when: 'Tự gửi thứ Hai hằng tuần', bg: '#f6f0fb' },
+        { name: 'Tồn kho vật tư sắp hết', when: 'Cảnh báo khi dưới mức tối thiểu', bg: '#f6f0fb' },
+        { name: 'Xếp hạng 6 cơ sở TP.HCM', when: sch ? 'Tự gửi 7:00 thứ Hai' : 'Vừa tạo, chưa lưu', bg: '#fbe4ef' }
+      ],
+      examples: ['Top 10 dịch vụ tăng trưởng nhanh nhất quý này', 'Khách còn buổi liệu trình nhưng 60 ngày chưa quay lại', 'Công suất phòng và máy theo giờ, tuần trước'],
+      spec: [
+        { k: 'Dữ liệu dùng', v: 'Lịch hẹn, doanh thu, hồ sơ khách, đánh giá' },
+        { k: 'Phạm vi', v: '6 cơ sở TP.HCM, 01/02 đến 28/02' },
+        { k: 'Chỉ số', v: 'Số ca, doanh thu, quay lại 90 ngày, đánh giá' },
+        { k: 'Gửi tự động', v: '7:00 thứ Hai, qua Zalo và email' }
+      ],
+      rows, isChart: v === 'chart', isTable: v === 'table',
+      tabC: v === 'chart' ? on : off, tabT: v === 'table' ? on : off,
+      showChart: () => this.setState({ view: 'chart' }), showTable: () => this.setState({ view: 'table' }),
+      schedBtn: sch ? { label: 'Đã lên lịch: 7:00 thứ Hai', bg: '#e3f4ea', fg: '#1f6b42' } : { label: 'Lên lịch gửi mỗi thứ Hai', bg: '#4a1488', fg: '#ffffff' },
+      schedule: () => this.setState({ scheduled: true }),
+      access: [
+        { t: 'Doanh thu, lịch hẹn 6 cơ sở TP.HCM', dot: '#6fcf97', fg: '#f7f0fd' },
+        { t: 'Đánh giá và phản hồi của khách', dot: '#6fcf97', fg: '#f7f0fd' },
+        { t: 'Ca làm việc, công suất phòng máy', dot: '#6fcf97', fg: '#f7f0fd' },
+        { t: 'Lương nhân viên: không được xem', dot: '#ff8fbf', fg: '#ffc2de' },
+        { t: 'Các cơ sở ngoài TP.HCM: không được xem', dot: '#ff8fbf', fg: '#ffc2de' }
+      ],
+      glossary: [
+        { k: 'Khách quay lại 90 ngày', v: 'Khách làm thêm ít nhất một dịch vụ trong 90 ngày sau lần trước' },
+        { k: 'Doanh thu', v: 'Tiền khách đã thanh toán, trừ hoàn tiền, không tính buổi trừ liệu trình' },
+        { k: 'Số ca', v: 'Số buổi dịch vụ đã thực hiện, kể cả buổi trừ liệu trình' }
+      ]
+    };
+  }
+}
+dcMount(Component);
+</script>
+
+</body>
+</html>

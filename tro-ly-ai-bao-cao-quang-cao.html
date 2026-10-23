@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trợ lý AI: báo cáo hiệu quả quảng cáo</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4a1488}a:hover{color:#2e0b57}
+</style>
+<style>body{margin:0}</style>
+<script src="dc-lite.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="min-height: 1240px; background: #f5eefa; font-family: 'Be Vietnam Pro', system-ui, sans-serif; color: #2a1740">
+  <div style="background: #2e0b57; color: #f7f0fd">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 16px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <div style="display: flex; align-items: baseline; gap: 16px">
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #e3c27a; letter-spacing: 1px">Linh Anh</span>
+        <span style="font-size: 15px; color: #d6c4ea">Trợ lý AI</span>
+      </div>
+      <span style="font-size: 13px; font-weight: 600; color: #2e0b57; background: #e3c27a; padding: 4px 10px; border-radius: 999px">Số liệu minh họa</span>
+    </div>
+  </div>
+
+  <div style="max-width: 1360px; margin: 0 auto; padding: 28px 40px 40px; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+    <aside style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="background: #2e0b57; color: #f7f0fd; border-radius: 20px; padding: 22px">
+        <p style="margin: 0; font-size: 14px; color: #d6c4ea">Đang làm việc với vai trò</p>
+        <p style="margin: 4px 0 0; font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #e3c27a">Trưởng marketing</p>
+        <p style="margin: 6px 0 0; font-size: 14px; color: #d6c4ea">Ra lệnh qua Zalo, Teams hoặc màn hình này</p>
+      </div>
+      <div style="background: #ffffff; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 17px; font-weight: 700; color: #2e0b57">AI được làm thay bạn</h2>
+        <sc-for list="{{ allowed }}" as="a" hint-placeholder-count="3">
+          <div style="display: flex; gap: 10px; align-items: center; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f6b42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>{{ a }}</span></div>
+        </sc-for>
+        <h2 style="margin: 8px 0 0; font-size: 17px; font-weight: 700; color: #2e0b57">Cần người duyệt</h2>
+        <sc-for list="{{ needApproval }}" as="a" hint-placeholder-count="2">
+          <div style="display: flex; gap: 10px; align-items: center; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a3135f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg><span>{{ a }}</span></div>
+        </sc-for>
+      </div>
+    </aside>
+
+    <main style="flex: 999 1 560px; min-width: 0; background: #ffffff; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 16px">
+      <div style="align-self: flex-end; max-width: 78%; background: #4a1488; color: #fbf6ff; border-radius: 16px 16px 4px 16px; padding: 12px 16px; font-size: 15px; line-height: 1.5">Cho tôi xem báo cáo hiệu quả quảng cáo</div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; gap: 10px; align-items: center"><span style="width: 32px; height: 32px; border-radius: 10px; background: #f6edd9; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a5a12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9.4l-4.2 1.8L12 16l-1.8-4.8L6 9.4l4.2-1.8z"/></svg></span><span style="font-size: 15px; font-weight: 600">Đây là hiệu quả quảng cáo, tính bằng tiền khách thật sự trả tại cơ sở. Có 1 việc nên làm ngay.</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px 18px; padding-left: 42px">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3"><div style="display: flex; gap: 6px; align-items: center; font-size: 13px; color: #5d4c73"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a2bc2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>{{ s }}</span></div></sc-for>
+        </div>
+
+        <div style="margin-left: 42px; border: 1px solid #e2d3f0; border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 18px; background: #fcf9fe">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+            <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: #2e0b57">Báo cáo hiệu quả quảng cáo</span><span style="font-size: 13px; color: #5d4c73">{{ period.range }} · 4 kênh quảng cáo · 13 cơ sở</span></div>
+            <div style="display: flex; gap: 4px; background: #efe5f8; padding: 4px; border-radius: 12px">
+              <button onClick="{{ pickWeek }}" style="height: 36px; padding: 0 14px; border: 0; border-radius: 9px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; background: {{ tabW.bg }}; color: {{ tabW.fg }}">Tuần này</button>
+              <button onClick="{{ pickMonth }}" style="height: 36px; padding: 0 14px; border: 0; border-radius: 9px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; background: {{ tabM.bg }}; color: {{ tabM.fg }}">30 ngày</button>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+            <sc-for list="{{ period.kpis }}" as="k" hint-placeholder-count="4">
+              <div style="background: {{ k.bg }}; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+                <span style="font-size: 12px; color: {{ k.lc }}">{{ k.label }}</span>
+                <span style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: {{ k.vc }}; line-height: 1.1">{{ k.value }}</span>
+                <span style="font-size: 12px; font-weight: 600; color: {{ k.nc }}">{{ k.note }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 18px">
+            <div style="flex: 3 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+              <span style="font-size: 14px; font-weight: 700; color: #2e0b57">Hiệu quả theo kênh</span>
+              <div style="overflow-x: auto">
+                <div style="min-width: 440px; display: flex; flex-direction: column">
+                  <div style="display: grid; grid-template-columns: 90px repeat(3, minmax(0, 1fr)) minmax(0, 1.6fr); gap: 10px; font-size: 12px; color: #5d4c73; padding: 0 0 6px; border-bottom: 1px solid #e8dcf4"><span>Kênh</span><span style="text-align: right">Chi phí</span><span style="text-align: right">Khách chi tiền</span><span style="text-align: right">Tốn cho 1 khách</span><span>1 đồng thu về</span></div>
+                  <sc-for list="{{ period.channels }}" as="c" hint-placeholder-count="4">
+                    <div style="display: grid; grid-template-columns: 90px repeat(3, minmax(0, 1fr)) minmax(0, 1.6fr); gap: 10px; align-items: center; font-size: 13px; padding: 9px 0; border-bottom: 1px solid #f1e9f8">
+                      <span style="font-weight: 600">{{ c.name }}</span>
+                      <span style="text-align: right; font-variant-numeric: tabular-nums">{{ c.spend }}</span>
+                      <span style="text-align: right; font-variant-numeric: tabular-nums">{{ c.cust }}</span>
+                      <span style="text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; color: {{ c.cacColor }}">{{ c.cac }}</span>
+                      <span style="display: flex; align-items: center; gap: 8px"><span style="flex: 1; height: 10px; background: #efe5f8; border-radius: 5px; overflow: hidden"><span style="display: block; height: 10px; border-radius: 5px; width: {{ c.w }}; background: {{ c.barColor }}"></span></span><span style="font-weight: 700; font-variant-numeric: tabular-nums; min-width: 40px">{{ c.roas }}</span></span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+            <div style="flex: 2 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+              <span style="font-size: 14px; font-weight: 700; color: #2e0b57">Còn bao nhiêu khách qua từng bước</span>
+              <sc-for list="{{ period.funnel }}" as="f" hint-placeholder-count="4">
+                <div style="display: flex; flex-direction: column; gap: 4px; font-size: 13px">
+                  <div style="display: flex; justify-content: space-between"><span>{{ f.name }}</span><span style="font-weight: 700; color: {{ f.vc }}">{{ f.v }}</span></div>
+                  <div style="height: 8px; background: #efe5f8; border-radius: 4px; overflow: hidden"><div style="height: 8px; border-radius: 4px; width: {{ f.w }}; background: {{ f.bar }}"></div></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid #f3cfe2; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: 14px; font-weight: 700; color: #8e1257">Nhận định của trợ lý AI</span>
+            <span style="font-size: 14px; line-height: 1.5">TikTok mang về nhiều người để lại số nhưng ít người trả tiền: để có 1 khách, TikTok tốn gần gấp đôi Meta. Khâu yếu nhất vẫn là lịch hẹn đến cơ sở, thấp nhất ở Bình Dương 2.</span>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+            <button style="font: inherit; font-size: 14px; font-weight: 600; border: 0; border-radius: 10px; padding: 11px 16px; background: #4a1488; color: #ffffff; cursor: pointer">Soạn đề xuất chuyển 15% ngân sách TikTok sang Meta</button>
+            <span style="font-size: 12px; font-weight: 700; color: #8e1257; background: #fbe4ef; padding: 4px 10px; border-radius: 999px">Cần Ban Giám đốc duyệt</span>
+            <button style="font: inherit; font-size: 14px; font-weight: 600; border: 1px solid #d8c6ea; border-radius: 10px; padding: 11px 16px; background: #ffffff; color: #4a1488; cursor: pointer">Xuất PDF</button>
+            <button style="font: inherit; font-size: 14px; font-weight: 600; border: 1px solid #d8c6ea; border-radius: 10px; padding: 11px 16px; background: #ffffff; color: #4a1488; cursor: pointer">Gửi nhóm Zalo marketing</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; align-items: center; margin-top: 4px">
+        <label for="cmd2" style="flex: 1; display: flex; align-items: center; border: 1px solid #d8c6ea; border-radius: 14px; padding: 4px 6px 4px 16px; background: #ffffff">
+          <input id="cmd2" placeholder="Hỏi tiếp, ví dụ: vì sao Bình Dương 2 thấp?" style="flex: 1; border: 0; outline: none; font: inherit; font-size: 15px; padding: 10px 0; background: transparent; color: #2a1740; min-width: 0">
+          <button aria-label="Nói bằng giọng" style="width: 44px; height: 44px; border: 0; border-radius: 10px; background: #f3eafb; cursor: pointer; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg></button>
+        </label>
+        <button style="height: 52px; font: inherit; font-size: 15px; font-weight: 700; border: 0; border-radius: 14px; padding: 0 22px; background: #b5176f; color: #ffffff; cursor: pointer">Gửi</button>
+      </div>
+      <a href="tro-ly-ai.html" style="align-self: flex-start; font-size: 14px; font-weight: 600">Quay lại hội thoại trước</a>
+    </main>
+
+    <aside style="flex: 1 1 300px; min-width: 0; background: #ffffff; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-size: 17px; font-weight: 700; color: #2e0b57">Nhật ký thao tác</h2>
+      <sc-for list="{{ log }}" as="e" hint-placeholder-count="5">
+        <div style="display: flex; flex-direction: column; gap: 4px; padding-bottom: 12px; border-bottom: 1px solid #efe5f8">
+          <div style="display: flex; justify-content: space-between; gap: 8px; align-items: center"><span style="font-size: 13px; color: #5d4c73; font-variant-numeric: tabular-nums">{{ e.time }}</span><span style="font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: {{ e.bg }}; color: {{ e.fg }}">{{ e.status }}</span></div>
+          <span style="font-size: 14px; line-height: 1.45">{{ e.text }}</span>
+        </div>
+      </sc-for>
+      <p style="margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: #5d4c73">Mỗi lệnh ghi lại người ra lệnh, việc AI đã làm và kết quả kiểm tra quyền. Hệ thống nghiệp vụ kiểm tra quy tắc lần cuối.</p>
+    </aside>
+  </div>
+</div>
+</template>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:9;font:600 14px 'Be Vietnam Pro',system-ui,sans-serif;background:#2e0b57;color:#e3c27a;text-decoration:none;padding:10px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)">Về trang chính</a>
+<script>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { p: 'month' }; }
+  renderVals() {
+    const ok = { bg: '#e3f4ea', fg: '#1f6b42' }, wait = { bg: '#fbe4ef', fg: '#8e1257' }, read = { bg: '#efe5f8', fg: '#4a1488' }, deny = { bg: '#f3e1e1', fg: '#8a1c1c' };
+    const W = '#ffffff', D = '#2e0b57';
+    const kpi = (label, value, note, dark, good) => ({ label, value, note, bg: dark ? D : W, lc: dark ? '#d6c4ea' : '#5d4c73', vc: dark ? '#e3c27a' : '#2e0b57', nc: dark ? '#ffb8d9' : (good ? '#1f6b42' : '#5d4c73') });
+    const ch = (name, spend, cust, cac, roas, r, warn) => ({ name, spend, cust, cac, roas, w: (r / 6.1 * 100).toFixed(0) + '%', barColor: warn ? '#b5176f' : '#7a2bc2', cacColor: warn ? '#a3135f' : '#2a1740' });
+    const fn = (name, v, pct, weak) => ({ name, v, w: pct + '%', bar: weak ? '#b5176f' : '#7a2bc2', vc: weak ? '#a3135f' : '#2a1740' });
+    const data = {
+      month: {
+        range: '30 ngày gần nhất',
+        kpis: [kpi('Chi phí quảng cáo', '2,50 tỷ', 'Đạt 96% ngân sách tháng', false, false), kpi('Khách để lại số', '18.420', '136.000 đ cho mỗi số', false, false), kpi('Để có 1 khách trả tiền', '1,04 triệu', 'Giảm 4,1% so với tháng trước', false, true), kpi('1 đồng quảng cáo thu về', '5,3 đồng', '13,25 tỷ doanh thu từ quảng cáo', true, false)],
+        channels: [ch('Meta', '1,10 tỷ', '1.180', '0,93 tr', '6,1 đ', 6.1), ch('Google', '0,80 tỷ', '820', '0,98 tr', '5,4 đ', 5.4), ch('Zalo Ads', '0,15 tỷ', '150', '1,00 tr', '5,2 đ', 5.2), ch('TikTok', '0,45 tỷ', '260', '1,73 tr', '3,2 đ', 3.2, true)],
+        funnel: [fn('Được gọi tư vấn', '70%', 70), fn('Đồng ý đặt lịch', '49%', 49), fn('Đã hẹn và có đến', '46%', 46, true), fn('Đến và trả tiền', '82%', 82)]
+      },
+      week: {
+        range: 'Tuần này, 09/03 đến 15/03',
+        kpis: [kpi('Chi phí quảng cáo', '0,58 tỷ', 'Đạt 98% kế hoạch tuần', false, false), kpi('Khách để lại số', '4.310', '135.000 đ cho mỗi số', false, false), kpi('Để có 1 khách trả tiền', '1,02 triệu', 'Giảm 2,0% so với tuần trước', false, true), kpi('1 đồng quảng cáo thu về', '5,2 đồng', '3,02 tỷ doanh thu từ quảng cáo', true, false)],
+        channels: [ch('Meta', '0,25 tỷ', '276', '0,91 tr', '6,0 đ', 6.0), ch('Google', '0,19 tỷ', '196', '0,97 tr', '5,3 đ', 5.3), ch('Zalo Ads', '0,04 tỷ', '38', '1,05 tr', '5,0 đ', 5.0), ch('TikTok', '0,10 tỷ', '61', '1,64 tr', '3,3 đ', 3.3, true)],
+        funnel: [fn('Được gọi tư vấn', '71%', 71), fn('Đồng ý đặt lịch', '48%', 48), fn('Đã hẹn và có đến', '47%', 47, true), fn('Đến và trả tiền', '83%', 83)]
+      }
+    };
+    const p = this.state.p;
+    const on = { bg: '#ffffff', fg: '#4a1488' }, off = { bg: 'transparent', fg: '#5d4c73' };
+    return {
+      allowed: ['Tạo, sửa hồ sơ khách', 'Đặt và đổi lịch hẹn', 'Xem báo cáo marketing'],
+      needApproval: ['Đổi giá, chiết khấu', 'Chuyển ngân sách quảng cáo', 'Xóa dữ liệu khách'],
+      steps: ['Đọc dữ liệu quảng cáo, hồ sơ khách, doanh thu cơ sở', 'Gom mọi thông tin của cùng một khách', 'Kiểm tra quyền: được xem báo cáo marketing'],
+      period: data[p], tabW: p === 'week' ? on : off, tabM: p === 'month' ? on : off,
+      pickWeek: () => this.setState({ p: 'week' }), pickMonth: () => this.setState({ p: 'month' }),
+      log: [
+        { time: '09:45', text: 'Trưởng marketing xem báo cáo hiệu quả quảng cáo', status: 'Chỉ đọc', ...read },
+        { time: '09:42', text: 'Trưởng marketing tạo khách Nguyễn Thị Lan, đặt lịch cơ sở 3', status: 'Hoàn tất', ...ok },
+        { time: '09:40', text: 'Trưởng marketing soạn giá giảm 20% phun môi', status: 'Chờ duyệt', ...wait },
+        { time: '09:31', text: 'Lễ tân cơ sở 3 yêu cầu đổi giá dịch vụ', status: 'Từ chối, không đủ quyền', ...deny },
+        { time: '08:15', text: 'Ban Giám đốc hỏi doanh thu Bình Dương 2', status: 'Chỉ đọc', ...read }
+      ]
+    };
+  }
+}
+dcMount(Component);
+</script>
+
+</body>
+</html>
