@@ -20,10 +20,10 @@ a{color:#4a1488}a:hover{color:#2e0b57}
   <div style="flex: 1; padding: 22px 20px 12px; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
     <div style="display: flex; justify-content: space-between; align-items: center">
       <div>
-        <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 700; color: #4a1488">Linh Anh</div>
-        <div style="font-size: 22px; font-weight: 700; margin-top: 2px">Chào chị Lan</div>
+        <a href="index.html" aria-label="Linh Anh, về trang chính" style="display: inline-flex; align-items: center; text-decoration: none; flex: none"><img src="assets/logo-linh-anh-nen-tim.jpg" alt="Linh Anh Thẩm mỹ viện" style="display: block; height: 44px; width: auto; border-radius: 10px"></a>
+        <div style="font-size: 22px; font-weight: 700; margin-top: 8px">Chào chị Lan</div>
       </div>
-      <button aria-label="Thông báo" style="width: 44px; height: 44px; border-radius: 14px; border: 0; background: #ffffff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 003.4 0"/></svg></button>
+      <span style="display: inline-flex; align-items: center; gap: 8px"><a href="index.html" style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: #4a1488; text-decoration: none; background: #ffffff; border: 1px solid #d8c6ea; padding: 6px 10px; border-radius: 999px"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>Trang chính</a><button aria-label="Thông báo" style="width: 44px; height: 44px; border-radius: 14px; border: 0; background: #ffffff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a1488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 003.4 0"/></svg></button></span>
     </div>
 
     <div style="background: #2e0b57; border-radius: 20px; padding: 18px 20px; color: #f7f0fd; display: flex; flex-direction: column; gap: 10px">
@@ -74,7 +74,7 @@ a{color:#4a1488}a:hover{color:#2e0b57}
   </nav>
 </div>
 </template>
-<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:9;font:600 14px 'Be Vietnam Pro',system-ui,sans-serif;background:#2e0b57;color:#e3c27a;text-decoration:none;padding:10px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)">Về trang chính</a>
+
 <script>
 class Component extends DCLogic {
   renderVals() {

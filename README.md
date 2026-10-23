@@ -27,5 +27,6 @@ Mở `index.html` (cổng ứng dụng nội bộ) bằng trình duyệt, chọn
 - `ban-giam-doc-suc-khoe-co-so.html`: Báo cáo sức khỏe 13 cơ sở
 - `man-hinh-phong-ceo.html`: Màn hình phòng CEO (treo tường)
 - `dc-lite.js`: bộ dựng giao diện nhỏ dùng chung cho các màn hình
+- `assets/`: logo Linh Anh (bản nền trong suốt và bản nền tím)
 
 Màn hình phòng CEO tự co giãn vừa khung màn hình, phù hợp để mở toàn màn hình trên TV.
